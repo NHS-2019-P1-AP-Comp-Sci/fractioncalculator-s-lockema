@@ -59,12 +59,7 @@ public class FracCalc {
         	equation = operate(operand1, operator, operand2) + equation;
     	}
     	
-    	return equation;
-        
-//    	return "whole:" + stringToWhole(operand2)
-//             + " numer:" + stringToNumer(operand2)
-//             + " denom:" + stringToDenom(operand2);
-    	
+    	return equation;	
     }
     
 //  method for parsing whole value from string
@@ -191,7 +186,11 @@ public class FracCalc {
     	}
     }
     
+//  method takes two operands and an operator as input, and outputs the operated
+//  operand
     public static String operate(String operand1, String operator, String operand2) {
+    	
+//    	calls existing methods to take the whole, numer and denom from strings
     	int whole1 = stringToWhole(operand1);
     	int numer1 = stringToNumer(operand1);
     	int denom1 = stringToDenom(operand1);
@@ -199,12 +198,15 @@ public class FracCalc {
     	int numer2 = stringToNumer(operand2);
     	int denom2 = stringToDenom(operand2);
     	
+//    	calls existing methods to convert to improper fractions
     	numer1 = toImproper(whole1, numer1, denom1);
     	numer2 = toImproper(whole2, numer2, denom2);
     	
     	int numerResult;
     	int denomResult;
     	
+//    	sets numerResult and denomResult to correct values based on what
+//    	operand is detected
     	if (operator.equals("+")) {
     		numerResult = (numer1 * denom2) + (numer2 * denom1);
         	denomResult = denom1 * denom2;
@@ -225,14 +227,17 @@ public class FracCalc {
     		return "ERROR: Invalid operator.";
     	}
     	
+//    	uses gcm to reduce fraction
     	int gcm = gcm(numerResult, denomResult);
     	numerResult /= gcm;
     	denomResult /= gcm;
     	
+//    	converts back to mixed number
     	int wholeResult = toMixed(numerResult, denomResult);
     	int excessNumer = wholeResult * denomResult;
     	numerResult = numerResult - excessNumer;
     	
+//    	converts whole, numer, and denom to strong, and returns
     	return intsToOperand(wholeResult, numerResult, denomResult);
     }
 }

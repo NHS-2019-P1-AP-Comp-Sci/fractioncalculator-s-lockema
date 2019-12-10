@@ -10,9 +10,11 @@ public class FracCalc {
     	System.out.println("Welcome to Fraction Calculator!\n"
     			+ "Enter your equations below.\n");
     	boolean toContinue = true;
-        while (toContinue) {
+        
+//    	sentinel loop will run until the user types 'quit'
+    	while (toContinue) {
         	String equation = userInput.nextLine();
-        	toContinue = equation.equals("quit");
+        	toContinue = !equation.equals("quit");
         	if (toContinue) {
         		String output = produceAnswer(equation);
         		System.out.println(output);
